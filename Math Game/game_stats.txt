@@ -1,0 +1,35 @@
+	    STATS
+_________________________________
+
+Game 1:
+Number of Questions:     3
+Number of Right Answers: 3
+Number of Wrong Answers: 0
+Questions Level:	 Easy
+Ops Type:		 -
+_________________________________
+
+Game 2:
+Number of Questions:     3
+Number of Right Answers: 2
+Number of Wrong Answers: 1
+Questions Level:	 Medium
+Ops Type:		 +
+_________________________________
+
+Game 3:
+Number of Questions:     3
+Number of Right Answers: 3
+Number of Wrong Answers: 0
+Questions Level:	 Easy
+Ops Type:		 *
+_________________________________
+
+Game 4:
+Number of Questions:     3
+Number of Right Answers: 1
+Number of Wrong Answers: 2
+Questions Level:	 Hard
+Ops Type:		 /
+_________________________________
+

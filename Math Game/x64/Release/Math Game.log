@@ -1,0 +1,11 @@
+﻿  Math Game.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+C:\Users\Hesham\source\repos\Math Game\Math Game\Math Game.cpp(151): warning C4715: 'get_operation': not all control paths return a value
+C:\Users\Hesham\source\repos\Math Game\Math Game\Math Game.cpp(142): warning C4715: 'get_number': not all control paths return a value
+C:\Users\Hesham\source\repos\Math Game\Math Game\Math Game.cpp(168): warning C4715: 'performOperation': not all control paths return a value
+C:\Users\Hesham\source\repos\Math Game\Math Game\Math Game.cpp(47): warning C4715: 'QuestionsLevel': not all control paths return a value
+C:\Users\Hesham\source\repos\Math Game\Math Game\Math Game.cpp(56): warning C4715: 'OpsType': not all control paths return a value
+  All 245 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Math Game.vcxproj -> C:\Users\Hesham\source\repos\Math Game\x64\Release\Math Game.exe

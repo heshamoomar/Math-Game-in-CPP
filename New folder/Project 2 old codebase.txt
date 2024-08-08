@@ -1,0 +1,207 @@
+mine
+#include <iostream>
+#include <cstdlib> // For rand() and srand()
+#include <ctime>   // For time()
+
+using namespace std;
+
+short rounds = 0;
+short chosen_level = 0;
+short chosen_operation = 0;
+short number_of_right_answers = 0;
+short number_of_wrong_answers = 0;
+
+void welcome_screen() {
+	cout << "///////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n\n";
+	cout << "\t\tWELCOME TO\n";
+	cout << "\t  M a t h\tG a m e\n\n";
+	cout << "\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\///////////////////////\n\n";
+}
+
+int RandomNumber(int min, int max) {
+	return min + rand() % (max - min + 1);
+}
+
+struct stDifficulty
+{
+	int ones = RandomNumber(1, 9);				// easy
+	int tens = RandomNumber(10, 99);			// medium
+	int hundreds = RandomNumber(100, 999);		// hard
+
+	int difficulties[3] = { ones,tens,hundreds };
+
+	int mix = difficulties[RandomNumber(0, 2)];	// mix
+};
+
+struct stOperation
+{
+	char Operations[4] = { '+','-','*','/' };
+	char mix = Operations[RandomNumber(0, 3)];
+};
+
+string QuestionsLevel() {
+	if (chosen_level == 1)return "Easy";
+	if (chosen_level == 2)return "Medium";
+	if (chosen_level == 3)return "Hard";
+	if (chosen_level == 4)return "Mix";
+
+}
+
+string OpsType() {
+	if (chosen_operation == 1)return "+";
+	if (chosen_operation == 2)return "-";
+	if (chosen_operation == 3)return "*";
+	if (chosen_operation == 4)return "/";
+	if (chosen_operation == 5)return "Mix";
+
+}
+
+void end_game() {
+	cout << "_________________________________\n\n";
+	if (number_of_right_answers > number_of_wrong_answers)
+		cout << "Final Result: You Won!	 :-)\n";
+	else if(number_of_right_answers < number_of_wrong_answers)
+		cout << "Final Result: You Lost!\n";
+	else {
+		cout << "Final Result: Draw!\n";
+		system("color 60"); //  console yellow
+	}
+
+	cout << "_________________________________\n\n";
+	cout << "\t    STATS\n";
+	cout << "Number of Questions:     " << rounds << '\n';
+	cout << "Number of Right Answers: " << number_of_right_answers << '\n';
+	cout << "Number of Wrong Answers: " << number_of_wrong_answers << '\n';
+	cout << "Questions Level:	 " << QuestionsLevel() << '\n';
+	cout << "Ops Type:		 " << OpsType();
+	cout << "\n_________________________________\n";
+	cout << endl;
+}
+
+void choose_difficulty() {
+	do
+	{
+		cout << "Enter Questions Level [1] Easy, [2] Mid, [3] Hard, [4] Mix ? ";
+		cin >> chosen_level;
+
+	} while (chosen_level < 1 || chosen_level > 4);
+
+}
+
+void choose_operation() {
+	do
+	{
+		cout << "Enter Operations Type [1] Add,  [2] Sub, [3] Mul, [4] Div, [5] Mix ? ";
+		cin >> chosen_operation;
+
+	} while (chosen_operation < 1 || chosen_operation > 5);
+
+}
+
+int numbers() {
+	stDifficulty df;
+	if (chosen_level == 1)return df.ones;
+	if (chosen_level == 2)return df.tens;
+	if (chosen_level == 3)return df.hundreds;
+	if (chosen_level == 4)return df.mix;
+}
+
+char operations() {
+	stOperation op;
+	if (chosen_operation == 1)return op.Operations[0];	//	add
+	if (chosen_operation == 2)return op.Operations[1];	//	sub
+	if (chosen_operation == 3)return op.Operations[2];	//	mul
+	if (chosen_operation == 4)return op.Operations[3];	//	div
+	if (chosen_operation == 5)return op.mix;			//	mix
+}
+
+int performOperation(char op, int a, int b) {
+	switch (op) {
+	case '+':
+		return a + b;
+	case '-':
+		return a - b;
+	case '*':
+		return a * b;
+	case '/':
+		if (b == 0)
+			throw runtime_error("Division by zero!");
+		return a / b;
+	default:
+		break;
+	}
+}
+
+void play_rounds(int questions) {
+	choose_difficulty();
+	choose_operation();
+	int answer;
+	int corrcet_answer;
+	for (int i = 1; i <= questions; i++)
+	{
+		int num1 = numbers();
+		int num2 = numbers();
+		char operation = operations();
+
+		cout << "\nQuestion [" << i << '/' << questions << "]\n\n";
+		cout << num1 << '\n';
+		cout << num2 << ' ' << operation << '\n';
+		cout << "__________\n";
+
+		cin >> answer;
+		corrcet_answer = performOperation(operation, num1, num2);
+
+		if (answer == corrcet_answer) {
+			cout << "Right Answer :-)\n";
+			system("color 20"); //  console light green
+			number_of_right_answers++;
+		}
+		else {
+			cout << "Wrong Answer :-(\n";
+			cout << "Right answer is " << corrcet_answer << '\n';
+			system("color 4F"); //  console red
+			cout << '\a';	//	bell
+			number_of_wrong_answers++;
+		}
+	}
+}
+
+short how_many_questions() {
+	do
+	{
+		cout << "How many questions do you want to answer? (1 to 10): ";
+		cin >> rounds;
+	} while (rounds > 10 || rounds < 1);
+	cout << '\n';
+	return rounds;
+}
+
+bool keep_playing() {
+	cout << "Do you want to play agian? (Y or N): ";
+	char choice;
+	cin >> choice;
+	system("color 0F");	//	color black
+	cout << endl;
+	if (choice == 'Y' || choice == 'y') {
+		rounds = 0;
+		chosen_level = 0;
+		chosen_operation = 0;
+		number_of_right_answers = 0;
+		number_of_wrong_answers = 0;
+		return true;
+	}
+	return false;
+}
+
+int main()
+{
+	srand(static_cast<unsigned int>(time(0)));  //  Seed the random number generator
+	welcome_screen();
+	do
+	{
+		play_rounds(how_many_questions());
+		end_game();
+	} while (keep_playing());
+
+	return 0;
+}

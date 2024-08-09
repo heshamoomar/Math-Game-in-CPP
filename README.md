@@ -1,15 +1,14 @@
 # Math-Game-in-CPP
 v2.0
 
-Added functions declaration for code.
+* Added functions declaration for code.
+* Added custom header files MathLib.h Fileio.h RandomLib.h for better usability and functionality.
 
-Added custom header files MathLib.h Fileio.h RandomLib.h for better usability and functionality.
+* added number input validation for character input case (NumOps::readNumber()) across the code.
 
-added number input validation for character input case (NumOps::readNumber()) across the code.
+* Added game stats output to .exe file.
 
-Added game stats output to .exe file.
-
-fixed get_number() & get_operation() edge cases.
+* fixed get_number() & get_operation() edge cases.
 
 For division cases:
 

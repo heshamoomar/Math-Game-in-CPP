@@ -11,7 +11,7 @@
 
 * fixed get_number() & get_operation() edge cases.
   
-For division cases:
+* For division cases:
 
     Ignoring presicion numbers for better gameplay
     

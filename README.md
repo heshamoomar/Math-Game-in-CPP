@@ -13,7 +13,7 @@
   
 * For division cases:
 
-    Ignoring presicion numbers for better gameplay
+    * Ignoring presicion numbers for better gameplay
     
     Dividing larger number by smaller number for better gameplay 
     
